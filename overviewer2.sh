@@ -29,7 +29,7 @@ export MAP_DIR
 docker exec $CONTAINER_NAME rcon-cli save-off
 docker exec $CONTAINER_NAME rcon-cli save-all
 
-if [ -z "$(pgrep overviewer.py)" ]
+if ps -aux | grep "[o]verviewer.py" >/dev/null
     then
         echo "Previous execution of Overviewer is still running, exiting"
     else

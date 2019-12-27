@@ -7,14 +7,18 @@ There are two components, the automation script and the overviewer config.
 
 The script is set up with cron in mind as it will check to see if overviewer is still running.
 
-The script, overviewer2.sh, takes 5 command line arguments;
-  * worldname: The name for your world, pick something unique to identify this map
-  * worldpath: The path to the world to be mapped
-  * dockercontainername: The name of the dockercontainer
-  * rconport for container: The config will report render progress to players on the server and manage saving while rendering
-  * mapdir: The output directory you would like your map written to
 
-_Usage example: ./overviewer2.sh testing /home/minecraft/world minecraft 25575 /home/minecraft/mcmaps/map_
+
+The script, overviewer.sh, takes the following command line arguments;
+  * mode: (required) online|offline  Use online to run against a currently running server, offline to render archived or offline maps
+  * worldname: (required) The name for your world, pick something unique to identify this map
+  * worldpath: (required)The path to the world to be mapped
+  * dockercontainername: (required for online use only) The name of the dockercontainer
+  * rconport for container: (required for online use only) The config will report render progress to players on the server and manage saving while rendering
+  * mapdir: (required) The output directory you would like your map written to
+
+_Online Usage example: ./overviewer.sh online testing /home/minecraft/world minecraft 25575 /home/minecraft/mcmaps/map_
+_Offline Usage example: ./overviewer.sh offline testing /home/minecraft/world /home/minecraft/mcmaps/map_
 
 ### **This config will generate the following maps:**
 

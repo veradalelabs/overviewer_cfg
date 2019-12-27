@@ -5,7 +5,7 @@
 #Example ./overviewer.sh online|offline myworld /home/minecraft/world minecraftserver 25575 /home/webhost/mcmaps
 
 #minecraft overviewer location
-MCOV_EXE="~/veradalelabs/Projects/overviewer_source/Minecraft-Overviewer"
+MCOV_EXE="/home/prozach/veradalelabs/Projects/overviewer_source/Minecraft-Overviewer"
 
 
 #OPERATION MODE
@@ -20,7 +20,6 @@ if ps -aux | grep "[o]verviewer.py" >/dev/null
                 if [ "$#" -ne 6 ]
                     then 
                         echo "Invalid argument count.  Please supply correct commandline arguments for proper operation"
-                        break
                     else
                         #Overviewer Vars
                         #WORLD NAME
@@ -51,7 +50,6 @@ if ps -aux | grep "[o]verviewer.py" >/dev/null
                 if [ "$#" -ne 4 ]
                     then 
                         echo "Invalid argument count.  Please supply correct commandline arguments for proper operation"
-                        break
                     else
                         #Overviewer Vars
                         #WORLD NAME
@@ -64,18 +62,12 @@ if ps -aux | grep "[o]verviewer.py" >/dev/null
                         MAP_DIR=$4
                         export MAP_DIR
                         CONFIG="/home/prozach/veradalelabs/Projects/overviewer_cfg/overviewer_dyn_offline.cfg"
-                        #Disable Saving and Save the world
-                        docker exec $CONTAINER_NAME rcon-cli save-off
-                        docker exec $CONTAINER_NAME rcon-cli save-all           
                         $MCOV_EXE/overviewer.py --config=$CONFIG --genpoi
                         $MCOV_EXE/overviewer.py --config=$CONFIG
-                        #re-enable world Saving
-                        docker exec $CONTAINER_NAME rcon-cli save-on
                 fi
                 ;;
             *)
                 echo "No Mode defined.  Acceptable values are offline or online."
-                break
                 ;;
         esac
 fi
